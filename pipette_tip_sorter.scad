@@ -39,31 +39,58 @@ module cassette(rows,columns,outer_r,outer_c,hole_d,h=10){
 
 
 
-module bars(rows,width,catch_w,outer_c,height,length){
-    spacing = (outer_c - hole_d)/rows;
-    for(i=[0:1:rows]){
+module bars(rows,width,outer_c,height,length){
+    spacing = (outer_c - hole_d)/(rows-1);
+    for(i=[0:1:rows-1]){
         translate([0,i*spacing,0])cube([length,width,height],center=true);
     }//end for
 }//end bars
 
-module sorter_box(){
+module sorter_box(length){
     translate([0,-(rows_outer-hole_d)/2,0])difference(){
-        translate([0,(rows_outer)/2-hole_d/2,-2])cube([cols_outer*3,rows_outer+5,top_h+2],center=true);
-        bars(columns, hole_d, 5, rows_outer,top_h,cols_outer*3);
-        translate([0,0,-(top_h+2)/2])bars(columns, lip_d, 5, rows_outer,top_h+2,cols_outer*3);
+        translate([0,(rows_outer)/2-hole_d/2,-2])cube([length,rows_outer+5,top_h+2],center=true);
+        translate([2,0,0])bars(columns, hole_d, rows_outer,top_h,length);
+        translate([2,0,-(top_h+2)/2])bars(columns, lip_d, rows_outer,top_h+2,length);
     }//end difference
-    translate([0,0,(top_h)])difference(){
-        cube([cols_outer*3,rows_outer+5,top_h+2],center=true);
-        cube([cols_outer*3-8,rows_outer,top_h+2],center=true);
+    translate([0,0,(top_h-2)])difference(){
+        cube([length,rows_outer+5,top_h+2],center=true);
+        cube([length-8,rows_outer,top_h+2],center=true);
+    }//end difference
+    rotate([90,90,0])translate([-top_h-6,length/2-2,0])cylinder(r=2.31,h=rows_outer+5,$fn=6,center=true);
+    difference(){
+        translate([length/2-2,0,top_h-7])rotate([90,0,0])cylinder(r=4,h=30,$fn=6,center=true);
+        translate([0,0,(top_h-2)])cube([length-8,rows_outer,top_h+2],center=true);
     }//end difference
 }//end sorter box
 
-sorter_box();
+//sorter_box(70);
 
+module door(){
+    difference(){
+        translate([lower_h*3+30,0,top_h/2+0.2])cube([lower_d,rows_outer+5,top_h*2+4],center=true);
+        translate([rows_outer+22.4,0,top_h-7])rotate([90,0,0])cylinder(r=4,h=30,$fn=6,center=true);
+    }//end difference
+    difference (){
+        translate([129.2,0,24.9])cube([4,rows_outer+5,3.2],center=true);
+        rotate([90,90,0])translate([-top_h-6,129.2,0])cylinder(r=2.31,h=rows_outer+5,$fn=6,center=true);
+    }//end difference
+}//end door
+ 
+//door();
 
-
-
-
-
-
-
+module pipette_holder_thing(length, channel_w){
+    difference(){
+    cube([length,cols_outer+6,top_h],center=true);
+    translate([0,-cols_outer/2 + hole_d/2,0])bars(rows, channel_w, cols_outer,top_h,length);
+}//end difference
+    translate([length/2,0,0])cube([channel_w,cols_outer+15,top_h],center=true);
+    difference(){
+        translate([(length/2)+14,0,0])cube([24,cols_outer-20,top_h],center=true);
+        translate([(length/2)+11,0,0])cube([19,cols_outer-30,top_h],center=true);
+    
+    
+    
+    
+    }//end difference
+}//end pipette holder thing
+pipette_holder_thing(100, lower_d);
