@@ -60,16 +60,18 @@ module sorter_box(length){
         cube([length,rows_outer+5,top_h+5],center=true);
         cube([length-8,rows_outer,top_h+5],center=true);
     }//end difference
-    rotate([90,90,0])translate([-top_h-9.5,length/2-2,0])cylinder(r=2.31,h=rows_outer+5,$fn=6,center=true);
-    difference(){
-        translate([length/2-3,0,top_h-5])rotate([90,0,0])cylinder(r=6,h=rows_outer,$fn=6,center=true);
-        translate([0,0,(top_h-2)])cube([length-8,rows_outer,top_h+2],center=true);
-        translate([length/2+1,rows_outer/4,top_h-5])cube([lower_d,4,12],center=true);
-        translate([length/2+1,0,top_h-5])cube([lower_d,4,12],center=true);
-        translate([length/2+1,-rows_outer/4,top_h-5])cube([lower_d,4,12],center=true);
+    rotate([90,90,0])translate([-top_h-9.5,length/2-2,0])cylinder(r=2.3,h=rows_outer+5,$fn=6,center=true);
 
+    door_holder=5;
+    difference(){
+        translate([length/2+door_depth/2+1.5,rows_outer/2,-top_h/5.5])cube([door_depth+3,door_holder,top_h],center=true);
+        translate([length/2+door_depth/2+0.2,0,top_h/2+0.2])cube([door_depth+0.4,rows_outer,top_h*2+11],center=true);
+    }
+    difference(){
+        translate([length/2+door_depth/2+1.5,-rows_outer/2,-top_h/5.5])cube([door_depth+3,door_holder,top_h],center=true);
+        translate([length/2+door_depth/2+0.2,0,top_h/2+0.2])cube([door_depth+0.4,rows_outer,top_h*2+11],center=true);
     }//end difference
-    
+
 //base feet
     difference(){
         translate([length/2-base_feet_width/2,rows_outer/2+4.5,-top_h/2+base_feet_height/4])cube(base_feet_out,center=true);
@@ -80,12 +82,12 @@ module sorter_box(length){
         translate([length/2-base_feet_width/2,-rows_outer/2-4.5,-top_h/2+base_feet_height/4])cube(base_feet_in,center=true);
     }//end difference
     difference(){
-        translate([(length/2-base_feet_width/2)-cols_outer+lower_d,rows_outer/2+4.5,-top_h/2+base_feet_height/4])cube(base_feet_out,center=true);
-        translate([(length/2-base_feet_width/2)-cols_outer+lower_d,rows_outer/2+4.5,-top_h/2+base_feet_height/4])cube(base_feet_in,center=true);
+        translate([(length/2-base_feet_width/2)-cols_outer-lower_d/2,rows_outer/2+4.5,-top_h/2+base_feet_height/4])cube(base_feet_out,center=true);
+        translate([(length/2-base_feet_width/2)-cols_outer-lower_d/2,rows_outer/2+4.5,-top_h/2+base_feet_height/4])cube(base_feet_in,center=true);
     }//end difference
     difference(){
-        translate([(length/2-base_feet_width/2)-cols_outer+lower_d,-rows_outer/2-4.5,-top_h/2+base_feet_height/4])cube(base_feet_out,center=true);
-        translate([(length/2-base_feet_width/2)-cols_outer+lower_d,-rows_outer/2-4.5,-top_h/2+base_feet_height/4])cube(base_feet_in,center=true);
+        translate([(length/2-base_feet_width/2)-cols_outer-lower_d/2,-rows_outer/2-4.5,-top_h/2+base_feet_height/4])cube(base_feet_out,center=true);
+        translate([(length/2-base_feet_width/2)-cols_outer-lower_d/2,-rows_outer/2-4.5,-top_h/2+base_feet_height/4])cube(base_feet_in,center=true);
     }//end difference
     //difference(){
         //translate([-length/2+base_feet_width/2,rows_outer/2+4.5,-top_h/2+base_feet_height/4])cube(base_feet_out,center=true);
@@ -114,22 +116,17 @@ module feet(length,feet_height,feet_width){
         }//end difference
 }//end feet
 
-//feet(200,16,lower_d+8);
+door_depth=4.75;
+//feet(100,16,lower_d+8);
 module door(length){
-    difference(){
-        translate([length,0,top_h/2+0.2])cube([lower_d,rows_outer+5,top_h*2+11],center=true);
-        translate([length-5,0,top_h-5])rotate([90,0,0])cylinder(r=6,h=rows_outer,$fn=6,center=true);
-    }//end difference
+        translate([length/2+door_depth/2,0,top_h/2+1.2])cube([door_depth,rows_outer,top_h*2+9],center=true);
     difference (){
-        translate([length-4,0,top_h*2-4])cube([4,rows_outer+5,3.2],center=true);
-        rotate([90,90,0])translate([-top_h-9.5,length-4,0])cylinder(r=2.31,h=rows_outer+5,$fn=6,center=true);
+        translate([(length/2+door_depth/2)-4.3,0,top_h*2-4])cube([4,rows_outer,3.2],center=true);
+        rotate([90,90,0])translate([-top_h-9.5,(length/2+door_depth/2)-4.35,0])cylinder(r=2.3,h=rows_outer+5,$fn=6,center=true);
     }//end difference
-    translate([length,rows_outer/4,top_h-5])cube([lower_d,4,12],center=true);
-    translate([length,0,top_h-5])cube([lower_d,4,12],center=true);
-    translate([length,-rows_outer/4,top_h-5])cube([lower_d,4,12],center=true);
 }//end door
  
-//door(130);
+//door(120);
 
 module comb(length, channel_w){
     handle=19;
@@ -138,12 +135,24 @@ module comb(length, channel_w){
         translate([0,-cols_outer/2 + hole_d/2,0])bars(rows, channel_w, cols_outer,top_h,length*2);
         translate([-length/2,cols_outer/2+3,-comb_height/2]){rotate([0,0,155])cube([length/2,cols_outer+50,comb_height]);}
     }//end difference
-    translate([length/2,0,0])cube([4.75,cols_outer+15,comb_height],center=true);
+    translate([length/2,0,0])cube([door_depth,cols_outer+15,comb_height],center=true);
     difference(){
         translate([(length/2)+14,0,0])cube([handle+5,cols_outer-20,comb_height],center=true);
         translate([(length/2)+11,0,0])cube([handle,cols_outer-30,comb_height],center=true);
     }//end difference
 }//end comb
-//translate([100,0,-top_h])rotate(90)comb(rows_outer*1.2, lower_d);
+//translate([1.7,0,-top_h])rotate(90)comb(rows_outer*1.2, lower_d);
 
-
+module test(length){
+    door_holder=5;
+    translate([47.5,0,0])cube([5,111.8,16.2],center=true);
+    difference(){
+        translate([length/2+door_depth/2+1.5,rows_outer/2,0])cube([door_depth+3,door_holder,top_h],center=true);
+        translate([length/2+door_depth/2+0.15,0,top_h/2+0.2])cube([door_depth+0.3,rows_outer+0.5,top_h*2+11],center=true);
+    }
+    difference(){
+        translate([length/2+door_depth/2+1.5,-rows_outer/2,0])cube([door_depth+3,door_holder,top_h],center=true);
+        translate([length/2+door_depth/2+0.15,0,top_h/2+0.2])cube([door_depth+0.3,rows_outer+0.5,top_h*2+11],center=true);
+    }//end difference
+}//end test
+//test(100);
