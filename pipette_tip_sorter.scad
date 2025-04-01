@@ -1,4 +1,4 @@
-// Pipette details - check the pipette_tip model looks like your real pipette
+ // Pipette details - check the pipette_tip model looks like your real pipette
 top_d = 7.5;
 top_h = 16.2;
 lip_d = 5.8;
@@ -10,7 +10,7 @@ rows = 8;
 columns = 12;
 rows_outer = 106.8; // from outer edge to outer edge of a single row
 cols_outer = 71; // same for columns
-hole_d = 7.9;
+hole_d = 8;
 
 
 module pipette_tip(top_d, top_h, lip_d, lower_d, lower_h, $fn=30){
@@ -62,14 +62,14 @@ module sorter_box(length){
     }//end difference
     rotate([90,90,0])translate([-top_h-9.5,length/2-2,0])cylinder(r=2.3,h=rows_outer+5,$fn=6,center=true);
 
-    door_holder=5;
+    door_holder=6.5;
     difference(){
-        translate([length/2+door_depth/2+1.5,rows_outer/2,-top_h/5.5])cube([door_depth+3,door_holder,top_h],center=true);
-        translate([length/2+door_depth/2+0.2,0,top_h/2+0.2])cube([door_depth+0.4,rows_outer,top_h*2+11],center=true);
+        translate([length/2+door_depth/2+1.5,rows_outer/2+3.25,-top_h/5.5])cube([door_depth+3,door_holder,top_h],center=true);
+        translate([length/2+door_depth/2+0.25,0,top_h/2+0.2])cube([door_depth+0.5,rows_outer+5,top_h*2+11],center=true);
     }
     difference(){
-        translate([length/2+door_depth/2+1.5,-rows_outer/2,-top_h/5.5])cube([door_depth+3,door_holder,top_h],center=true);
-        translate([length/2+door_depth/2+0.2,0,top_h/2+0.2])cube([door_depth+0.4,rows_outer,top_h*2+11],center=true);
+        translate([length/2+door_depth/2+1.5,-rows_outer/2+3.25,-top_h/5.5])cube([door_depth+3,door_holder,top_h],center=true);
+        translate([length/2+door_depth/2+0.25,0,top_h/2+0.2])cube([door_depth+0.5,rows_outer+5,top_h*2+11],center=true);
     }//end difference
 
 //base feet
@@ -89,21 +89,21 @@ module sorter_box(length){
         translate([(length/2-base_feet_width/2)-cols_outer-lower_d/2,-rows_outer/2-4.5,-top_h/2+base_feet_height/4])cube(base_feet_out,center=true);
         translate([(length/2-base_feet_width/2)-cols_outer-lower_d/2,-rows_outer/2-4.5,-top_h/2+base_feet_height/4])cube(base_feet_in,center=true);
     }//end difference
-    //difference(){
-        //translate([-length/2+base_feet_width/2,rows_outer/2+4.5,-top_h/2+base_feet_height/4])cube(base_feet_out,center=true);
-        //translate([-length/2+base_feet_width/2,rows_outer/2+4.5,-top_h/2+base_feet_height/4])cube(base_feet_in,center=true);
-    //}//end difference
-    //difference(){
-        //translate([-length/2+base_feet_width/2,-rows_outer/2-4.5,-top_h/2+base_feet_height/4])cube(base_feet_out,center=true);
-        //translate([-length/2+base_feet_width/2,-rows_outer/2-4.5,-top_h/2+base_feet_height/4])cube(base_feet_in,center=true);
-    //}//end difference
+    difference(){
+        translate([-length/2+base_feet_width/2,rows_outer/2+4.5,-top_h/2+base_feet_height/4])cube(base_feet_out,center=true);
+        translate([-length/2+base_feet_width/2,rows_outer/2+4.5,-top_h/2+base_feet_height/4])cube(base_feet_in,center=true);
+    }//end difference
+    difference(){
+        translate([-length/2+base_feet_width/2,-rows_outer/2-4.5,-top_h/2+base_feet_height/4])cube(base_feet_out,center=true);
+        translate([-length/2+base_feet_width/2,-rows_outer/2-4.5,-top_h/2+base_feet_height/4])cube(base_feet_in,center=true);
+    }//end difference
 
 
 
 
 }//end sorter box
 
-sorter_box(100);
+sorter_box(200);
 
 comb_height = 10;
 
@@ -144,15 +144,15 @@ module comb(length, channel_w){
 //translate([1.7,0,-top_h])rotate(90)comb(rows_outer*1.2, lower_d);
 
 module test(length){
-    door_holder=5;
     translate([47.5,0,0])cube([5,111.8,16.2],center=true);
+    door_holder=5;
     difference(){
         translate([length/2+door_depth/2+1.5,rows_outer/2,0])cube([door_depth+3,door_holder,top_h],center=true);
-        translate([length/2+door_depth/2+0.15,0,top_h/2+0.2])cube([door_depth+0.3,rows_outer+0.5,top_h*2+11],center=true);
+        translate([length/2+door_depth/2+0.25,0,0])cube([door_depth+0.5,rows_outer+0.5,top_h*2+11],center=true);
     }
     difference(){
         translate([length/2+door_depth/2+1.5,-rows_outer/2,0])cube([door_depth+3,door_holder,top_h],center=true);
-        translate([length/2+door_depth/2+0.15,0,top_h/2+0.2])cube([door_depth+0.3,rows_outer+0.5,top_h*2+11],center=true);
+        translate([length/2+door_depth/2+0.25,0,0])cube([door_depth+0.5,rows_outer+0.5,top_h*2+11],center=true);
     }//end difference
 }//end test
 //test(100);
