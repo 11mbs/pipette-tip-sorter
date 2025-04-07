@@ -47,8 +47,8 @@ module bars(rows,width,outer_c,height,length){
 }//end bars
 base_feet_width = 24;
 base_feet_height = 12;
-base_feet_in = [15,4,base_feet_height];
-base_feet_out = [24,4,base_feet_height];
+base_feet_in = [base_feet_width-9,4,base_feet_height];
+base_feet_out = [base_feet_width,4,base_feet_height];
 
 module sorter_box(length){
     translate([0,-(rows_outer-hole_d)/2,0])difference(){
@@ -64,11 +64,11 @@ module sorter_box(length){
 
     door_holder=6.5;
     difference(){
-        translate([length/2+door_depth/2+1.5,rows_outer/2+3.25,-top_h/5.5])cube([door_depth+3,door_holder,top_h],center=true);
+        translate([length/2+door_depth/2+1.5,rows_outer/2+3.25,-top_h/2+base_feet_height/4])cube([door_depth+3,door_holder,base_feet_height],center=true);
         translate([length/2+door_depth/2+0.25,0,top_h/2+0.2])cube([door_depth+0.5,rows_outer+5,top_h*2+11],center=true);
     }
     difference(){
-        translate([length/2+door_depth/2+1.5,-rows_outer/2+3.25,-top_h/5.5])cube([door_depth+3,door_holder,top_h],center=true);
+        translate([length/2+door_depth/2+1.5,-rows_outer/2-3.25,-top_h/2+base_feet_height/4])cube([door_depth+3,door_holder,base_feet_height],center=true);
         translate([length/2+door_depth/2+0.25,0,top_h/2+0.2])cube([door_depth+0.5,rows_outer+5,top_h*2+11],center=true);
     }//end difference
 
@@ -89,7 +89,7 @@ module sorter_box(length){
         translate([(length/2-base_feet_width/2)-cols_outer-lower_d/2,-rows_outer/2-4.5,-top_h/2+base_feet_height/4])cube(base_feet_out,center=true);
         translate([(length/2-base_feet_width/2)-cols_outer-lower_d/2,-rows_outer/2-4.5,-top_h/2+base_feet_height/4])cube(base_feet_in,center=true);
     }//end difference
-    difference(){
+        difference(){
         translate([-length/2+base_feet_width/2,rows_outer/2+4.5,-top_h/2+base_feet_height/4])cube(base_feet_out,center=true);
         translate([-length/2+base_feet_width/2,rows_outer/2+4.5,-top_h/2+base_feet_height/4])cube(base_feet_in,center=true);
     }//end difference
@@ -117,16 +117,17 @@ module feet(length,feet_height,feet_width){
 }//end feet
 
 door_depth=4.75;
-//feet(100,16,lower_d+8);
+//feet(200,16,lower_d+8);
+
 module door(length){
-        translate([length/2+door_depth/2,0,top_h/2+1.2])cube([door_depth,rows_outer,top_h*2+9],center=true);
+        translate([length/2+door_depth/2,0,top_h/2+1.2])cube([door_depth,rows_outer+4.5,top_h*2+9],center=true);
     difference (){
-        translate([(length/2+door_depth/2)-4.3,0,top_h*2-4])cube([4,rows_outer,3.2],center=true);
+        translate([(length/2+door_depth/2)-4.3,0,top_h*2-4])cube([4,rows_outer+4.5,3.2],center=true);
         rotate([90,90,0])translate([-top_h-9.5,(length/2+door_depth/2)-4.35,0])cylinder(r=2.3,h=rows_outer+5,$fn=6,center=true);
     }//end difference
 }//end door
  
-//door(120);
+door(200);
 
 module comb(length, channel_w){
     handle=19;
