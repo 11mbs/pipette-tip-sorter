@@ -11,7 +11,7 @@
 //  Comb Depth Upper 10
 //  Lower Comb Angle 6
 
-
+pipette_name = "200µL";
 
    //--Box--//
 box_length = 200;//not shorter then 121
@@ -54,8 +54,7 @@ translate([-10,4,30])Spalten_Box_gelb(colums);
 translate([box_length-10,-1.5,30])cube([8,box_width+1,10]);
 difference(){
 translate([box_length-2,box_width/2-19.5,30])cube([20,37,10]);
-rotate([0,0,90])translate([box_width/2-19,-box_length-14,38])linear_extrude(2)text(str(comb_thickness_upper),size=7.0,font="arial:style=black");
-rotate([0,0,90])translate([box_width/2-18,-box_length-14,38])linear_extrude(2)text("     mm",size=7.0,font="arial:style=black");}
+rotate([0,0,90])translate([box_width/2-17,-box_length-14,38])linear_extrude(2)text(str(pipette_name),size=7.0,font="arial:style=black");}
 translate([0,0,14])Support_Inlay_gelb();
 translate([box_length/2,0,14])Support_Inlay_gelb();}
 
@@ -81,8 +80,7 @@ Spalten_gelb(rows);
 translate([8,0,0])cube([10,comb_thickness_lower+rows*9,10]);
 difference(){
 translate([-10,comb_thickness_lower/2+35,0]) cube([20,40,10]);
-rotate([0,0,270])translate([-comb_thickness_lower/2-75.0,-5,8])linear_extrude(2)text(str(comb_thickness_lower),size=8,font="arial:style=black");
-    rotate([0,0,270])translate([-comb_thickness_lower/2-75.0,-5,8])linear_extrude(2)text("     mm",size=8,font="arial:style=black");}}
+rotate([0,0,270])translate([-comb_thickness_lower/2-74.0,-5,8])linear_extrude(2)text(str(pipette_name),size=8,font="arial:style=black");}}
 
 module Spalten_gelb(anzahl){
     for (i = [0:rows])
