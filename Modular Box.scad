@@ -1,8 +1,10 @@
-//10µL Pipette
+//Paramaters for 10µL Pipette
 //  Comb Thickness Upper 4.7
 //  Comb thickness Lower 5.9
 //  Comb depth Upper 4
 //  Lower Comb Angle 8
+
+
 //200µL Pipette
 //  Comb Thickness Upper 6.1
 //  Comb Thickness Lower 3.8
@@ -12,37 +14,26 @@
 
 
    //--Box--//
-//translate([-10,-15,-9.5])Sorting_Box();
-
 box_length = 200;//not shorter then 121
 box_width = 86;
-
-
+//translate([-10,-15,-9.5])Sorting_Box();
 
    //--Lid--//
 //translate([-10,-15,-5])Lid();
 
-
-
    //--Upper Comb--//
-//translate([-10,-9.0,-30])Inlay_gelb();
-//Upper_Comb_Support(); //for more adhesion on the bed when printing
-
 comb_thickness_upper = 4.7;//thickness of pipette / gap
 colums = 8;
 comb_depth_upper = 10;//Max 10
-
-
+translate([-10,-9.0,-30])Inlay_gelb();
+Upper_Comb_Support(); //for more adhesion on the bed when printing
 
    //--Lower Comb--//
-rotate([0,0,90])translate([-27,-99.5,-13])transfer_Trey_gelb();
-
 comb_thickness_lower = 5.9;
 rows = 12;
 comb_offset_lower = 0.5;
 Lower_Comb_Angle = 8;//Default 6
-
-
+//rotate([0,0,90])translate([-27,-99.5,-13])transfer_Trey_gelb();
 
   //Upper Comb
 module Spalten_Box_gelb(anzahl){ 
