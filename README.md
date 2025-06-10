@@ -20,11 +20,16 @@ Stiff wire also works.
 1) Add 20 to 30 more tips and repeat the process of shaking and sliding until all the tips are in the box.  
 <img src="/images/(4) Adding more pipettes.jpg" alt="More tips" width="300"/> <img src="/images/(5) After all pipettes added.jpg" alt="More tips" width="300"/>
 1) Once you have enough tips, slide the lower comb into the gap underneath the upper comb to align the pipettes for the box the pipettes will be placed into.  
-<img src="/images/(5) After all pipettes added.jpg" alt="More tips" width="300"/>
-1) Once the lower comb is fully inserted check the pipettes to see if any of them have gone into the same row.  
-1) Now slightly shake the lower comb to make sure that all of the pipettes are straight to fit in the box correctly.  
-1) Now get the box that will that the pipettes will be placed in and make sure all the pipettes line up when lowering the pipettes into the box.  
-1) Once the pipettes are lined up with the box, then whilst holding the upper comb, slide out the pipettes with the lower comb.  
-1) Now pull out the lower comb from the pipettes and the pipettes should fall into place in the box.  
+<img src="/images/(6) Inserting lower comb.jpg" alt="Insert the lower comb" width="300"/>
+1) Once the lower comb is fully inserted check if any tips are squeezed into the same slot. You can pick these out manually or retry the lower comb if there are too many.  
+<img src="/images/(7) Issue when inserting lower comb.jpg" alt="Watch out for errors" width="300"/>
+1) Slightly shake the lower comb so all the tips are aligned to fit in the box correctly.  
+<img src="/images/(8) All pipettes in place.jpg" alt="All tips in place" width="300"/>
+1) Make sure all the pipettes line up when lowering into the cassette / tip box.  
+<img src="/images/(9) Lining up pipettes with the box.jpg" alt="Lining up with the box" width="300"/>
+1) Hold both combs and slide them apart, keeping the lower comb and tips in place.  
+<img src="/images/(10) Slideing away the box.jpg" alt="Slide away the box" width="300"/> <img src="/images/(11) Pipettes before sliding into box.jpg" alt="Lower comb still holding tips" width="300"/>
+1) Carefully slide out the lower comb and the tips should fall into place.  
+<img src="/images/(12) Pipettes being slid into box.jpg" alt="Slide away the lower comb" width="300"/>
 
 :)
